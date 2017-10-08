@@ -1,0 +1,1 @@
+# aimof's zsh configs
