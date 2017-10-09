@@ -29,3 +29,7 @@ setopt auto_pushd
 #predict
 autoload predict-on
 predict-on
+
+# ls alias
+alias ll='ls -la --color=auto'
+
