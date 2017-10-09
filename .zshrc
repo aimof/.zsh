@@ -1,3 +1,11 @@
+# alias
+setopt complete_aliases
+
+alias ls='ls --color'
+alias ll='ls -la'
+alias la='ls -a'
+alias lf='ls -F'
+
 #compinit
 autoload -U compinit
 compinit
@@ -29,7 +37,4 @@ setopt auto_pushd
 #predict
 autoload predict-on
 predict-on
-
-# ls alias
-alias ll='ls -la --color=auto'
 
