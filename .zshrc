@@ -25,3 +25,7 @@ bindkey -v
 # auto_cd
 setopt auto_cd
 setopt auto_pushd
+
+#predict
+autoload predict-on
+predict-on
