@@ -13,6 +13,9 @@ alias ll='ls -la'
 alias la='ls -a'
 alias lf='ls -F'
 
+# alias vim
+alias vim='vim -u $HOME/.vim/.vimrc'
+
 #compinit
 autoload -U compinit
 compinit
