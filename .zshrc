@@ -1,7 +1,14 @@
 # alias
 setopt complete_aliases
 
-alias ls='ls --color'
+case ${OSTYPE} in
+	darwin*)
+		alias ls='ls -G'
+	;;
+	linux*)
+		alias ls='ls --color'
+	;;
+esac
 alias ll='ls -la'
 alias la='ls -a'
 alias lf='ls -F'
@@ -38,3 +45,6 @@ setopt auto_pushd
 autoload predict-on
 predict-on
 
+#local settings
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
