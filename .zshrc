@@ -16,6 +16,21 @@ alias lf='ls -F'
 # alias vim
 alias vim='vim -u $HOME/.vim/.vimrc'
 
+# gcd
+gcd() {
+	TARGET=`gcdpath $1`
+	gcdhist add $TARGET
+	cd $TARGET
+	ls $TARGET
+}
+
+gcds() {
+	TARGET=$(gcdhist latest | fzf)
+	gcdhist add $TARGET
+	cd $TARGET
+	ls $TARGET
+}
+
 #compinit
 autoload -U compinit
 compinit
