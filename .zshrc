@@ -31,7 +31,21 @@ gcds() {
 	ls $TARGET
 }
 
-#compinit
+# git
+git-checkout-search() {
+	TARGET=`git branch | fzf`
+	git checkout $TARGET[3,-1]
+}
+
+git-checkout-remote-searh() {
+	TARGET=`git branch -a | fzf`
+	git checkout -B $TARGET[18,-1] $TARGET[3,-1]
+}
+
+# docker
+alias docker-rm-all='docker ps -f $(docker ps -aq)'
+
+# compinit
 autoload -U compinit
 compinit
 
