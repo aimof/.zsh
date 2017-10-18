@@ -32,12 +32,12 @@ gcds() {
 }
 
 # git
-git-checkout-search() {
+git-checkout-s() {
 	TARGET=`git branch | fzf`
 	git checkout $TARGET[3,-1]
 }
 
-git-checkout-remote-searh() {
+git-checkout-rs() {
 	TARGET=`git branch -a | fzf`
 	git checkout -B $TARGET[18,-1] $TARGET[3,-1]
 }
