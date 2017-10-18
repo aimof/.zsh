@@ -63,11 +63,20 @@ setopt share_history
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+
+# bindkey
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
-
-# bindkey -v
 bindkey -v
+
+# fhist
+fh() {
+	$(fhist save $BUFFER)
+	zle accept-line
+	zle clear-screen
+}
+zle -N fh
+bindkey "^M" fh
 
 # auto_cd
 setopt auto_cd
