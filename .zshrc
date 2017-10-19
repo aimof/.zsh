@@ -38,8 +38,8 @@ git-checkout-s() {
 }
 
 git-checkout-rs() {
-	TARGET=`git branch -a | fzf`
-	git checkout -B $TARGET[18,-1] $TARGET[3,-1]
+	TARGET=`git branch -r | fzf`
+	git checkout -B $TARGET[10,-1] $TARGET[3,-1]
 }
 
 # docker
@@ -76,6 +76,11 @@ setopt auto_pushd
 #predict
 autoload predict-on
 predict-on
+
+# plugin
+source `ghq root`/github.com/b4b4r07/enhancd/init.sh
+ENHANCD_FILTER=fzy:fzf:peco
+export ENHANCD_FILTER
 
 #local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
