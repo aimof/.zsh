@@ -73,13 +73,33 @@ bindkey "^N" history-beginning-search-forward-end
 bindkey -v
 
 # fhist
-fh() {
+fhsave() {
 	$(fhist save $BUFFER)
 	zle accept-line
 	zle clear-screen
 }
-zle -N fh
-bindkey "^M" fh
+zle -N fhsave
+bindkey "^M" fhsave
+
+fhsearchquery() {
+	ARG0=$(echo $BUFFER | awk '{print $1}')
+	QUERY=$(echo $LBUFFER | awk '{print $NF}')
+	CMD=$(echo $LBUFFER | awk '{$NF=""; print $0}')
+	LBUFFER+=$(fhist list $ARG0 | fzf -q $QUERY)
+	RBUFFER=""
+	zle clear-screen
+}
+zle -N fhsearchquery
+bindkey "^p" fhsearchquery
+
+fhsearch() {
+	ARG0=$(echo $BUFFER | awk '{print $1}')
+	LBUFFER+=$(fhist list $ARG0 | fzf)
+	RBUFFER=""
+	zle clear-screen
+}
+zle -N fhsearch
+bindkey "^O" fhsearch
 
 # auto_cd
 setopt auto_cd
