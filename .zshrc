@@ -45,6 +45,15 @@ git-checkout-rs() {
 	git checkout -B $TARGET[10,-1] $TARGET[3,-1]
 }
 
+# tmux
+function tmux-on() {
+	tmux new-window
+	tmux bind r source-file $ZDOTFILE/.tmux.conf
+	tmux split-window -h
+	tmux split-window
+	tmux split-window
+}
+
 # docker
 alias docker-rm-all='docker ps -f $(docker ps -aq)'
 
@@ -76,7 +85,6 @@ bindkey -v
 fhsave() {
 	$(fhist save $BUFFER)
 	zle accept-line
-	zle clear-screen
 }
 zle -N fhsave
 bindkey "^M" fhsave
