@@ -16,6 +16,9 @@ alias lf='ls -F'
 # alias vim
 alias vim='vim -u $HOME/.vim/.vimrc'
 
+# fzf
+alias fzf='fzf --height 70% --reverse'
+
 # gcd
 gcd() {
 	TARGET=`gcdpath $1`
