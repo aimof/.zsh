@@ -55,8 +55,6 @@ function tmux-get-main-pwd() {
 	lsof -a -p $mainpid -d cwd -Fn | tail -1 | sed 's/.//'
 }
 function tmux-on() {
-	tmux new-window
-	tmux bind r source-file $ZDOTFILE/.tmux.conf
 	tmux split-window -h
 	tmux split-window
 	tmux split-window
@@ -82,8 +80,8 @@ precmd () { vcs_info }
 SHOBON='(´･ω･`)'
 SHAKIN='(`･ω･´)'
 #prompt
-PROMPT='%(?.%F{cyan}${SHAKIN}.%F{red}${SHOBON})%f %B%F{green}%n%f%b:%B%F{blue}%~%f%b [${vcs_info_msg_0_}] 
-$ '
+PROMPT='%(?.%F{cyan}$SHAKIN.%F{red}$SHOBON%)%f %B%F{green}%n@%M%f%b: (%F{blue}%D %*%f) [${vcs_info_msg_0_}]
+%B%F{blue}%~%f%b $ '
 PROMPT2='%B%F{green}%_%f%b> '
 
 # hist
