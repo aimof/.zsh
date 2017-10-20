@@ -1,6 +1,8 @@
 # alias
 setopt complete_aliases
 
+LANG=en_US
+
 case ${OSTYPE} in
 	darwin*)
 		alias ls='ls -G'
@@ -46,6 +48,12 @@ git-checkout-rs() {
 }
 
 # tmux
+alias tmux='tmux -u'
+tmux source $ZDOTDIR/.tmux.conf
+function tmux-get-main-pwd() {
+	mainpid=$(tmux list-panes -F '#{pane_pid}' | head -n 1)
+	lsof -a -p $mainpid -d cwd -Fn | tail -1 | sed 's/.//'
+}
 function tmux-on() {
 	tmux new-window
 	tmux bind r source-file $ZDOTFILE/.tmux.conf
@@ -61,8 +69,21 @@ alias docker-rm-all='docker ps -f $(docker ps -aq)'
 autoload -U compinit
 compinit
 
+# git
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+
+SHOBON='(´･ω･`)'
+SHAKIN='(`･ω･´)'
 #prompt
-PROMPT='%B%F{green}%n@%m%f%b:%B%F{blue}%~%f%b$ '
+PROMPT='%(?.%F{cyan}${SHAKIN}.%F{red}${SHOBON})%f %B%F{green}%n%f%b:%B%F{blue}%~%f%b [${vcs_info_msg_0_}] 
+$ '
 PROMPT2='%B%F{green}%_%f%b> '
 
 # hist
@@ -107,7 +128,7 @@ fhsearch() {
 	zle clear-screen
 }
 zle -N fhsearch
-bindkey "^O" fhsearch
+#bindkey "^O" fhsearch
 
 # auto_cd
 setopt auto_cd
