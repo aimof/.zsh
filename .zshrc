@@ -1,7 +1,8 @@
 # alias
-setopt complete_aliases
+#setopt complete_aliases
 
-LANG=en_US
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 case ${OSTYPE} in
 	darwin*)
@@ -57,15 +58,14 @@ function tmux-get-main-pwd() {
 function tmux-on() {
 	tmux split-window -h
 	tmux split-window
-	tmux split-window
 }
 
 # docker
 alias docker-rm-all='docker ps -f $(docker ps -aq)'
 
 # compinit
-autoload -U compinit
-compinit
+#autoload -U compinit
+#compinit
 
 # git
 autoload -Uz vcs_info
@@ -77,10 +77,10 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 
-SHOBON='(´･ω･`)'
-SHAKIN='(`･ω･´)'
+SHOBON=$'\(´･ω･\`%)'
+SHAKIN=$'\(\`･ω･´%)'
 #prompt
-PROMPT='%(?.%F{cyan}$SHAKIN.%F{red}$SHOBON%)%f %B%F{green}%n@%M%f%b: (%F{blue}%D %*%f) [${vcs_info_msg_0_}]
+PROMPT='%(?.%F{cyan}$SHAKIN.%F{red}$SHOBON) %f %B%F{green}%n@%M%f%b: (%F{blue}%D %*%f) [${vcs_info_msg_0_}]
 %B%F{blue}%~%f%b $ '
 PROMPT2='%B%F{green}%_%f%b> '
 

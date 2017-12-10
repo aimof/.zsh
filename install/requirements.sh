@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /bin/sh
 
 # ZDOTDIR settings
 #if [ ${ZDOTDIR} = '' ]; then
@@ -10,21 +10,19 @@
 
 
 # define GOPATH
-#if [ ${GOPATH} = '' ]; then
-#	GOPATH=$HOME/go
-#fi
+export GOPATH=$HOME
 
 # install ghq
-#go get -u github.com/motemen/ghq
-#go install gihtub.com/motemen/ghq
+go get -u github.com/motemen/ghq
+go install gihtub.com/motemen/ghq
 
 # install peco
-#go get -u github.com/peco/peco/cmd/peco
-#go install github.com/peco/peco/cmd/peco
+go get -u github.com/peco/peco/cmd/peco
+go install github.com/peco/peco/cmd/peco
 
 #install fzf
-#go get -u github.com/junegunn/fzf
-#go install github.com/junegunn/fzf
+go get -u github.com/junegunn/fzf
+go install github.com/junegunn/fzf
 
 # vim
 # vim is required
