@@ -1,0 +1,56 @@
+
+# gcd
+gcd() {
+	TARGET=`gcdpath $1`
+	gcdhist add $TARGET
+	cd $TARGET
+	ls $TARGET
+}
+
+gcds() {
+	TARGET=$(gcdhist latest | fzf)
+	gcdhist add $TARGET
+	cd $TARGET
+	ls $TARGET
+}
+
+# git
+git-checkout-s() {
+	TARGET=`git branch | fzf`
+	git checkout $TARGET[3,-1]
+}
+
+git-checkout-rs() {
+	TARGET=`git branch -r | fzf`
+	git checkout -B $TARGET[10,-1] $TARGET[3,-1]
+}
+
+
+# fhist
+fhsave() {
+	$(fhist save $BUFFER)
+	zle accept-line
+}
+zle -N fhsave
+bindkey "^M" fhsave
+
+fhsearchquery() {
+	ARG0=$(echo $BUFFER | awk '{print $1}')
+	QUERY=$(echo $LBUFFER | awk '{print $NF}')
+	CMD=$(echo $LBUFFER | awk '{$NF=""; print $0}')
+	LBUFFER+=$(fhist list $ARG0 | fzf -q $QUERY)
+	RBUFFER=""
+	zle clear-screen
+}
+zle -N fhsearchquery
+bindkey "^p" fhsearchquery
+
+fhsearch() {
+	ARG0=$(echo $BUFFER | awk '{print $1}')
+	LBUFFER+=$(fhist list $ARG0 | fzf)
+	RBUFFER=""
+	zle clear-screen
+}
+zle -N fhsearch
+#bindkey "^O" fhsearch
+

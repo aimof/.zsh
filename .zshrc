@@ -22,32 +22,6 @@ alias vim='vim -u $HOME/.vim/.vimrc'
 # fzf
 alias fzf='fzf --height 70% --reverse'
 
-# gcd
-gcd() {
-	TARGET=`gcdpath $1`
-	gcdhist add $TARGET
-	cd $TARGET
-	ls $TARGET
-}
-
-gcds() {
-	TARGET=$(gcdhist latest | fzf)
-	gcdhist add $TARGET
-	cd $TARGET
-	ls $TARGET
-}
-
-# git
-git-checkout-s() {
-	TARGET=`git branch | fzf`
-	git checkout $TARGET[3,-1]
-}
-
-git-checkout-rs() {
-	TARGET=`git branch -r | fzf`
-	git checkout -B $TARGET[10,-1] $TARGET[3,-1]
-}
-
 # tmux
 alias tmux='tmux -u'
 tmux source $ZDOTDIR/.tmux.conf
@@ -59,9 +33,6 @@ function tmux-on() {
 	tmux split-window -h
 	tmux split-window
 }
-
-# docker
-alias docker-rm-all='docker ps -f $(docker ps -aq)'
 
 # compinit
 #autoload -U compinit
@@ -99,34 +70,6 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey -v
-
-# fhist
-fhsave() {
-	$(fhist save $BUFFER)
-	zle accept-line
-}
-zle -N fhsave
-bindkey "^M" fhsave
-
-fhsearchquery() {
-	ARG0=$(echo $BUFFER | awk '{print $1}')
-	QUERY=$(echo $LBUFFER | awk '{print $NF}')
-	CMD=$(echo $LBUFFER | awk '{$NF=""; print $0}')
-	LBUFFER+=$(fhist list $ARG0 | fzf -q $QUERY)
-	RBUFFER=""
-	zle clear-screen
-}
-zle -N fhsearchquery
-bindkey "^p" fhsearchquery
-
-fhsearch() {
-	ARG0=$(echo $BUFFER | awk '{print $1}')
-	LBUFFER+=$(fhist list $ARG0 | fzf)
-	RBUFFER=""
-	zle clear-screen
-}
-zle -N fhsearch
-#bindkey "^O" fhsearch
 
 # auto_cd
 setopt auto_cd
