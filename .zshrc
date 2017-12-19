@@ -76,8 +76,8 @@ setopt auto_cd
 setopt auto_pushd
 
 #predict
-autoload predict-on
-predict-on
+#autoload predict-on
+#predict-on
 
 # plugin
 source `ghq root`/github.com/b4b4r07/enhancd/init.sh
