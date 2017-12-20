@@ -31,7 +31,6 @@ function tmux-get-main-pwd() {
 }
 function tmux-on() {
 	tmux split-window -h
-	tmux split-window
 }
 
 # compinit
