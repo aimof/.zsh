@@ -20,7 +20,8 @@ alias lf='ls -F'
 alias vim='vim -u $HOME/.vim/.vimrc'
 
 # fzf
-alias fzf='fzf --height 70% --reverse'
+alias FZF_DEFAULT_OPTS='--height 70% --reverse'
+
 
 # tmux
 alias tmux='tmux -u'
@@ -82,6 +83,7 @@ setopt auto_pushd
 source `ghq root`/github.com/b4b4r07/enhancd/init.sh
 ENHANCD_FILTER=fzy:fzf:peco
 export ENHANCD_FILTER
+export ENHANCD_DIR=$HOME/.zsh/.enhancd
 
 #local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
