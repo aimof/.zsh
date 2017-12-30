@@ -24,15 +24,15 @@ alias FZF_DEFAULT_OPTS='--height 70% --reverse'
 
 
 # tmux
-alias tmux='tmux -u'
-tmux source $ZDOTDIR/.tmux.conf
-function tmux-get-main-pwd() {
-	mainpid=$(tmux list-panes -F '#{pane_pid}' | head -n 1)
-	lsof -a -p $mainpid -d cwd -Fn | tail -1 | sed 's/.//'
-}
-function tmux-on() {
-	tmux split-window -h
-}
+#alias tmux='tmux -u'
+#tmux source $ZDOTDIR/.tmux.conf
+#function tmux-get-main-pwd() {
+#	mainpid=$(tmux list-panes -F '#{pane_pid}' | head -n 1)
+#	lsof -a -p $mainpid -d cwd -Fn | tail -1 | sed 's/.//'
+#}
+#function tmux-on() {
+#	tmux split-window -h
+#}
 
 # compinit
 #autoload -U compinit
