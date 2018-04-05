@@ -35,8 +35,8 @@ alias FZF_DEFAULT_OPTS='--height 70% --reverse'
 #}
 
 # compinit
-#autoload -U compinit
-#compinit
+autoload -U compinit
+compinit
 
 # git
 autoload -Uz vcs_info
@@ -67,8 +67,6 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 # bindkey
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
 bindkey -v
 
 # auto_cd
@@ -88,3 +86,13 @@ export ENHANCD_DIR=$HOME/.zsh/.enhancd
 #local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+
+#my-predict
+my-predict() {
+	BUFFER=`history -n -r 1 | sort | uniq | fzf --query=$LBUFFER`
+	return 0
+}
+
+zle -N my-predict
+
+bindkey "^P" my-predict

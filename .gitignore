@@ -1,4 +1,5 @@
 .zcompdump
 .zsh_hist
+.zsh_hist.old
 .zshrc.local
 .enhancd
