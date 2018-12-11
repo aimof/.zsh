@@ -96,3 +96,5 @@ my-predict() {
 zle -N my-predict
 
 bindkey "^P" my-predict
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
