@@ -1,0 +1,7 @@
+#export SOHDIR=$HOME/Documents/rhdir
+
+#function stdouthist {
+#	DIR=$SOHDIR/"$*"
+#	[ ! -e $DIR ] && mkdir -p $DIR
+#	$* | tee $DIR/`date "+%Y%m%d-%H%M%S"`.txt
+#}
