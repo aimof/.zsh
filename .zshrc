@@ -17,22 +17,30 @@ alias la='ls -a'
 alias lf='ls -F'
 
 # alias vim
-alias vim='vim -u $HOME/.vim/.vimrc'
+alias zshrc='nvim $ZDOTDIR/.zshrc'
+alias vimrc='nvim $HOME/.config/nvim/init.vim'
+alias gorc='nvim $HOME/.config/nvim/ftplugin/go.vim'
 
 # fzf
 alias FZF_DEFAULT_OPTS='--height 70% --reverse'
 
 
 # tmux
-#alias tmux='tmux -u'
-#tmux source $ZDOTDIR/.tmux.conf
-#function tmux-get-main-pwd() {
-#	mainpid=$(tmux list-panes -F '#{pane_pid}' | head -n 1)
-#	lsof -a -p $mainpid -d cwd -Fn | tail -1 | sed 's/.//'
-#}
-#function tmux-on() {
-#	tmux split-window -h
-#}
+if hash tmux &>/dev/null; then
+	function ts() {
+		tmux source $ZDOTDIR/.tmux.conf
+		tmux rename-window name
+		tmux split-window -h
+		tmux split-window -v -t name.1
+		tmux select-pane -t name.0
+		clear
+	}
+	function tmux-get-main-pwd() {
+		mainpid=$(tmux list-panes -F '#{pane_pid}' | head -n 1)
+		lsof -a -p $mainpid -d cwd -Fn | tail -1 | sed 's/.//'
+	}
+fi
+
 
 # compinit
 autoload -U compinit
